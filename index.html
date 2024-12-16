@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+		<link rel="icon" href="icon/favicon.svg">
+		<link rel="mask-icon" href="icon/mask-icon.svg" color="#000000">
+		<link rel="apple-touch-icon" href="icon/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="css/pico.jade.min.css" />
+    <title>Listify!</title>
+  </head>
+  <body>
+    <header class="container">
+      <nav>
+        <ul>
+          <li>
+            <details class="dropdown" data-theme-dropdown>
+              <summary role="button" class="secondary">Theme</summary>
+              <ul>
+                <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                <li><a href="#" data-theme-switcher="light">Light</a></li>
+                <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <hgroup>
+        <h1>Listify!</h1>
+        <p>
+          This will convert a list of values into an array/list for programming
+          purposes.
+        </p>
+      </hgroup>
+      <!-- Seperators -->
+      <fieldset>
+        <label for="input-seperator">Input Seperator</label>
+        <input
+          type="text"
+          name="input-seperator"
+          placeholder="Defaults to newlines"
+          aria-label="Seperator"
+        />
+        <small
+          >The input will be parsed as a
+          <abbr title="Regular Expression" data-tooltip="Regular Expression"
+            >Regex</abbr
+          >.
+        </small>
+        <label for="output-seperator">Output Seperator</label>
+        <input
+          type="text"
+          name="output-seperator"
+          placeholder="Defaults to comma and space"
+          aria-label="Seperator"
+        />
+        <small
+          >The input will be parsed as a regular string.<br />There is an
+          exception for <code>\n</code> and <code>\t</code>, which will be
+          parsed as whitespace and tabs.</small
+        >
+      </fieldset>
+      <!-- Single Elements -->
+      <fieldset>
+        <div class="label">Surround single elements by...</div>
+        <div role="group">
+          <button data-quote="'">' '</button>
+          <button data-quote='"' aria-current="true">" "</button>
+          <button data-quote="">No quotes</button>
+        </div>
+        <label>
+          <input name="quote-numbers" type="checkbox" role="switch" checked />
+          Quote numbers?
+        </label>
+				<label>
+          <input name="convert-special" type="checkbox" role="switch" checked />
+          Convert whitespace and tabs to special characters?
+        </label>
+      </fieldset>
+      <!-- All Elements -->
+      <fieldset>
+        <div class="label">Surround all elements by...</div>
+        <div role="group">
+          <button data-bracket="()">( )</button>
+          <button data-bracket="{}">{ }</button>
+          <button data-bracket="[]" aria-current="true">[ ]</button>
+          <button data-bracket="">No brackets</button>
+        </div>
+      </fieldset>
+      <!-- Sort -->
+      <fieldset>
+        <div class="label">Order elements...</div>
+        <div role="group">
+          <button data-sort="asc">
+            <span class="only-md">Ascending </span>↑
+          </button>
+          <button data-sort="dsc">
+            <span class="only-md">Descending </span>↓
+          </button>
+          <button data-sort="" aria-current="true">Unchanged</button>
+        </div>
+      </fieldset>
+      <small
+        >The entries will be sorted with the help of
+        <code>localeCompare()</code>.</small
+      >
+      <!-- Remove -->
+      <details class="dropdown">
+        <summary>Remove...</summary>
+        <ul>
+          <li>
+            <label>
+              <input type="checkbox" name="trim" checked />
+              Trimable whitespace
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="whitespace" checked />
+              Whitespace rows
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="duplicate" />
+              Duplicate entries
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="checkbox" name="diacritic" />
+              Diacritics
+            </label>
+          </li>
+        </ul>
+      </details>
+      <!-- Transform -->
+      <details class="dropdown">
+        <summary>Transform...</summary>
+        <ul>
+          <li>
+            <label>
+              <input type="radio" name="transform" value="lower" />
+              Lower case
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="transform" value="upper" />
+              Upper case
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="transform" value="capital" />
+              Capital case
+            </label>
+          </li>
+          <li>
+            <label>
+              <input type="radio" name="transform" value="camel" />
+              Camel case
+            </label>
+          </li>
+					<li>
+            <label>
+              <input type="radio" name="transform" value="snake" />
+              Snake case
+            </label>
+          </li>
+					<li>
+            <label>
+              <input type="radio" name="transform" value="none" checked/>
+              None
+            </label>
+          </li>
+        </ul>
+      </details>
+      <!-- Input & Output -->
+      <div class="grid mb">
+        <div>
+          <div class="label">Input</div>
+          <div id="input"></div>
+        </div>
+        <div>
+          <label for="output">Output</label>
+          <textarea
+            id="output"
+            name="output"
+            placeholder="Output will appear here"
+            aria-label="Output area"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+      <small>
+        Press <kbd>Escape</kbd>, then <kbd>Tab</kbd> to move out of this field.
+      </small>
+    </main>
+    <footer class="container">
+      <p>Copyright &copy; 2024 Pedram Ramezani. All rights reserved.</p>
+    </footer>
+    <script type="module" src="/src/index.ts"></script>
+    <script type="module" src="/src/minimal-theme-switcher.js"></script>
+  </body>
+</html>

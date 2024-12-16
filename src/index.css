@@ -1,0 +1,80 @@
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+#input {
+  --pico-background-color: var(--pico-form-element-background-color);
+  --pico-border-color: var(--pico-form-element-border-color);
+  --pico-color: var(--pico-form-element-color);
+  --pico-box-shadow: none;
+  border: var(--pico-border-width) solid var(--pico-border-color);
+  border-radius: var(--pico-border-radius);
+  outline: 0;
+  background-color: var(--pico-background-color);
+  box-shadow: var(--pico-box-shadow);
+  color: var(--pico-color);
+  font-weight: var(--pico-font-weight);
+  transition: background-color var(--pico-transition),
+    border-color var(--pico-transition), color var(--pico-transition),
+    box-shadow var(--pico-transition);
+
+  padding: var(--pico-form-element-spacing-vertical)
+    var(--pico-form-element-spacing-horizontal)
+    var(--pico-form-element-spacing-vertical) 0;
+  margin: 0 0 var(--pico-spacing) 0;
+
+  width: 100%;
+  overflow: auto;
+
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: inherit;
+  letter-spacing: inherit;
+}
+
+#input:has(.cm-editor.cm-focused) {
+  --pico-box-shadow: 0 0 0 var(--pico-outline-width)
+    var(--pico-form-element-focus-color);
+  --pico-border-color: var(--pico-form-element-active-border-color);
+  --pico-background-color: var(--pico-form-element-active-background-color);
+}
+
+.label {
+  display: block;
+  margin-bottom: calc(var(--pico-spacing) * 0.375);
+  color: var(--pico-color);
+  font-weight: var(--pico-form-label-font-weight, var(--pico-font-weight));
+}
+
+.mb {
+  margin-bottom: var(--pico-spacing);
+}
+
+.only-md {
+  display: none;
+}
+
+small kbd {
+  padding: 0.25rem;
+}
+
+@media screen and (min-width: 768px) {
+  #output {
+    height: 100%;
+  }
+
+  .only-md {
+    display: initial;
+  }
+}
