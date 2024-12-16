@@ -2,9 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-		<link rel="icon" href="icon/favicon.svg">
-		<link rel="mask-icon" href="icon/mask-icon.svg" color="#000000">
-		<link rel="apple-touch-icon" href="icon/apple-touch-icon.png">
+    <link rel="icon" href="icon/favicon.svg" />
+    <link rel="mask-icon" href="icon/mask-icon.svg" color="#000000" />
+    <link rel="apple-touch-icon" href="icon/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/pico.jade.min.css" />
@@ -75,7 +75,7 @@
           <input name="quote-numbers" type="checkbox" role="switch" checked />
           Quote numbers?
         </label>
-				<label>
+        <label>
           <input name="convert-special" type="checkbox" role="switch" checked />
           Convert whitespace and tabs to special characters?
         </label>
@@ -165,15 +165,15 @@
               Camel case
             </label>
           </li>
-					<li>
+          <li>
             <label>
               <input type="radio" name="transform" value="snake" />
               Snake case
             </label>
           </li>
-					<li>
+          <li>
             <label>
-              <input type="radio" name="transform" value="none" checked/>
+              <input type="radio" name="transform" value="none" checked />
               None
             </label>
           </li>
@@ -201,9 +201,13 @@
       </small>
     </main>
     <footer class="container">
-      <p>Copyright &copy; 2024 Pedram Ramezani. All rights reserved.</p>
+      <p>
+        Copyright &copy; 2024, created with 💚 by <a href="https://pedramramezani.de">Pedram Ramezani</a>.
+      </p>
+      <small>Built with <a href="https://codemirror.net/">CodeMirror</a> • <a href="https://picocss.com">PicoCSS</a> • <a href="https://github.com/pedRamezani/listify">Source code</a>
+      </small>
     </footer>
     <script type="module" src="/src/index.ts"></script>
-    <script type="module" src="/src/minimal-theme-switcher.js"></script>
+    <script src="/src/minimal-theme-switcher.js"></script>
   </body>
 </html>
