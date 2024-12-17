@@ -1,16 +1,14 @@
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  font-feature-settings: 'liga' 1, 'calt' 1;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, system-ui, Avenir, Helvetica, Arial, sans-serif; }
 } */
 
 #input {
@@ -50,6 +48,11 @@
   --pico-background-color: var(--pico-form-element-active-background-color);
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .label {
   display: block;
   margin-bottom: calc(var(--pico-spacing) * 0.375);
@@ -71,10 +74,50 @@ small kbd {
 
 @media screen and (min-width: 768px) {
   #output {
-    height: 100%;
+    flex-grow: 1;
   }
 
   .only-md {
     display: initial;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  [role="group"] {
+    flex-direction: column;
+  }
+
+
+  [role="group"] > * {
+    margin-left: 0 !important;
+  }
+
+  [role="group"] > button {
+    border-radius: 0;
+  }
+
+  [role="group"]>:not(:first-child) {
+    margin-top: 0;
+    /* border-top-left-radius: 0;
+    border-top-right-radius: 0; */
+  }
+
+  [role=group] button:not(:first-child) {
+    margin-top: calc(var(--pico-border-width) * -1);
+  }
+
+  /* [role="group"]>:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  } */
+
+  [role="group"]>button:is(:first-child) {
+    border-top-left-radius: var(--pico-border-radius);
+    border-top-right-radius: var(--pico-border-radius);
+  }
+
+  [role="group"]>button:is(:last-child) {
+    border-bottom-left-radius: var(--pico-border-radius);
+    border-bottom-right-radius: var(--pico-border-radius);
   }
 }

@@ -1,5 +1,3 @@
-import "./index.css";
-
 import {
   EditorView,
   lineNumbers,
@@ -162,11 +160,7 @@ inputSeperatorElement?.addEventListener("input", (event) => {
 
 // Output Seperator
 function replaceSpecialCharacters(text: string) {
-  return text.replace(
-    /\\n/g, "\n"
-  ).replace(
-    /\\t/g, "\t"
-  );
+  return text.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 }
 
 const defaultOutputSeperator = ", ";
@@ -199,7 +193,7 @@ quoteElements.forEach((quoteEl) => {
   const otherElements = Array.from(quoteElements).filter(
     (element) => element.dataset.quote != quoteEl.dataset.quote
   );
-  quoteEl.addEventListener("click", (_) => {
+  quoteEl.addEventListener("click", () => {
     quote = quoteEl.dataset.quote ?? '"';
     quoteEl.setAttribute("aria-current", "true");
     otherElements.forEach((otherEl) => {
@@ -227,7 +221,9 @@ const convertSpecialElement = document.querySelector<HTMLInputElement>(
   "input[name='convert-special']"
 );
 
-let convertSpecial = convertSpecialElement ? convertSpecialElement.checked : true;
+let convertSpecial = convertSpecialElement
+  ? convertSpecialElement.checked
+  : true;
 
 convertSpecialElement?.addEventListener("input", (event) => {
   if (event.target != null) {
@@ -256,7 +252,7 @@ bracketElements.forEach((bracketEl) => {
   const otherElements = Array.from(bracketElements).filter(
     (element) => element.dataset.bracket != bracketEl.dataset.bracket
   );
-  bracketEl.addEventListener("click", (_) => {
+  bracketEl.addEventListener("click", () => {
     brackets.left = (bracketEl.dataset.bracket ?? "[]").slice(0, 1);
     brackets.right = (bracketEl.dataset.bracket ?? "[]").slice(1, 2);
     bracketEl.setAttribute("aria-current", "true");
@@ -285,7 +281,7 @@ sortElements.forEach((sortEl) => {
   const otherElements = Array.from(sortElements).filter(
     (element) => element.dataset.sort != sortEl.dataset.sort
   );
-  sortEl.addEventListener("click", (_) => {
+  sortEl.addEventListener("click", () => {
     sort.active = sortEl.dataset.sort == "asc" || sortEl.dataset.sort == "dsc";
     sort.ascending = sortEl.dataset.sort == "asc";
     sortEl.setAttribute("aria-current", "true");
@@ -369,10 +365,46 @@ transformElements.forEach((element) => {
   });
 });
 
-// Input, Output
+// Input, Output, Copy
 const outputElement = document.querySelector<HTMLTextAreaElement>(
   "textarea[name='output']"
 );
+
+function fallbackCopyTextAreaToClipboard(textArea: HTMLTextAreaElement) {
+  textArea.focus();
+  textArea.select();
+
+  try {
+    const successful = document.execCommand("copy");
+    const message = successful ? "successful" : "unsuccessful";
+    console.log("Fallback: Copying text command was ", message);
+  } catch (error) {
+    console.error("Fallback: Unable to copy: ", error);
+  }
+}
+
+function copyTextAreaToClipboard(textArea: HTMLTextAreaElement) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextAreaToClipboard(textArea);
+    return;
+  }
+
+  navigator.clipboard.writeText(textArea.value).then(
+    () => {
+      console.log("Async: Copying to clipboard was successful!");
+    },
+    (error) => {
+      console.error("Async: Could not copy text: ", error);
+    }
+  );
+}
+
+const copyButton = document.querySelector<HTMLButtonElement>("#copy");
+copyButton?.addEventListener("click", () => {
+  if (outputElement != null) {
+    copyTextAreaToClipboard(outputElement);
+  }
+});
 
 function magic(text: string) {
   let result = text;
@@ -385,8 +417,8 @@ function magic(text: string) {
     result = result.replace(emptyLineRegex, "");
   }
 
-   if (removeDiacritics) {
-    result = result.normalize("NFKD").replace(diacriticRegex, "")
+  if (removeDiacritics) {
+    result = result.normalize("NFKD").replace(diacriticRegex, "");
   }
 
   let entries = result.split(inputSeperator);
@@ -425,7 +457,8 @@ function magic(text: string) {
 
     case "snake":
       entries = entries.map((entry) =>
-        entry.trim()
+        entry
+          .trim()
           .replace(/(?<![A-Z]|\b)[A-Z]/g, (match) => ` ${match}`)
           .replace(/\s+/g, "_")
           .toLowerCase()
@@ -437,7 +470,9 @@ function magic(text: string) {
   }
 
   if (convertSpecial) {
-    entries = entries.map((entry) => entry.replace(/\n/g, '\\n').replace(/\t/g, '\\t'));
+    entries = entries.map((entry) =>
+      entry.replace(/\n/g, "\\n").replace(/\t/g, "\\t")
+    );
   }
 
   if (removeDuplicates) {

@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <link rel="stylesheet" href="css/pico.jade.min.css" />
+    <!-- <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css"> -->
+    <link rel="stylesheet" href="css/index.css">
     <title>Listify!</title>
   </head>
   <body>
@@ -67,8 +70,8 @@
       <fieldset>
         <div class="label">Surround single elements by...</div>
         <div role="group">
-          <button data-quote="'">' '</button>
-          <button data-quote='"' aria-current="true">" "</button>
+          <button data-quote="'">'&nbsp;'</button>
+          <button data-quote='"' aria-current="true">"&nbsp;"</button>
           <button data-quote="">No quotes</button>
         </div>
         <label>
@@ -84,9 +87,9 @@
       <fieldset>
         <div class="label">Surround all elements by...</div>
         <div role="group">
-          <button data-bracket="()">( )</button>
-          <button data-bracket="{}">{ }</button>
-          <button data-bracket="[]" aria-current="true">[ ]</button>
+          <button data-bracket="()">(&nbsp;)</button>
+          <button data-bracket="{}">{&nbsp;}</button>
+          <button data-bracket="[]" aria-current="true">[&nbsp;]</button>
           <button data-bracket="">No brackets</button>
         </div>
       </fieldset>
@@ -182,10 +185,16 @@
       <!-- Input & Output -->
       <div class="grid mb">
         <div>
-          <div class="label">Input</div>
-          <div id="input"></div>
+          <fieldset>
+            <div class="label">Input</div>
+            <div id="input"></div>
+          </fieldset>
+          <small>
+            Press <kbd>Escape</kbd>, then <kbd>Tab</kbd> to move out of this
+            field.
+          </small>
         </div>
-        <div>
+        <fieldset class="flex-col">
           <label for="output">Output</label>
           <textarea
             id="output"
@@ -194,17 +203,19 @@
             aria-label="Output area"
             readonly
           ></textarea>
-        </div>
+          <button id="copy">Copy to Clipboard</button>
+        </fieldset>
       </div>
-      <small>
-        Press <kbd>Escape</kbd>, then <kbd>Tab</kbd> to move out of this field.
-      </small>
     </main>
     <footer class="container">
       <p>
-        Copyright &copy; 2024, created with 💚 by <a href="https://pedramramezani.de">Pedram Ramezani</a>.
+        Copyright &copy; 2024, created with 💚 by
+        <a href="https://pedramramezani.de">Pedram Ramezani</a>.
       </p>
-      <small>Built with <a href="https://codemirror.net/">CodeMirror</a> • <a href="https://picocss.com">PicoCSS</a> • <a href="https://github.com/pedRamezani/listify">Source code</a>
+      <small
+        >Built with <a href="https://codemirror.net/">CodeMirror</a> •
+        <a href="https://picocss.com">PicoCSS</a> •
+        <a href="https://github.com/pedRamezani/listify">Source code</a>
       </small>
     </footer>
     <script type="module" src="/src/index.ts"></script>
