@@ -37,7 +37,7 @@
 
   font-size: 1rem;
   line-height: var(--pico-line-height);
-  font-family: inherit;
+  font-family: var(--pico-font-family-monospace);
   letter-spacing: inherit;
 }
 
@@ -46,6 +46,21 @@
     var(--pico-form-element-focus-color);
   --pico-border-color: var(--pico-form-element-active-border-color);
   --pico-background-color: var(--pico-form-element-active-background-color);
+}
+
+#input .cm-editor .cm-scroller { 
+  font-family: var(--pico-font-family-monospace);
+}
+
+#input .cm-editor .cm-content { 
+  font-family: var(--pico-font-family-monospace);
+}
+
+#output {
+  font-size: 1rem;
+  line-height: var(--pico-line-height);
+  font-family: var(--pico-font-family-monospace);
+  letter-spacing: inherit;
 }
 
 .flex-col {

@@ -156,6 +156,8 @@ inputSeperatorElement?.addEventListener("input", (event) => {
     inputSeperator = defaultInputSeperator;
     target.setAttribute("aria-invalid", "true");
   }
+
+  editor.dispatch();
 });
 
 // Output Seperator
@@ -178,6 +180,7 @@ outputSeperatorElement?.addEventListener("input", (event) => {
   outputSeperator = target?.value
     ? replaceSpecialCharacters(outputSeperatorElement.value)
     : defaultOutputSeperator;
+  editor.dispatch();
 });
 
 // Quote
@@ -199,6 +202,7 @@ quoteElements.forEach((quoteEl) => {
     otherElements.forEach((otherEl) => {
       otherEl.setAttribute("aria-current", "false");
     });
+    editor.dispatch();
   });
 });
 
@@ -214,6 +218,7 @@ quoteNumbersElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     quoteNumbers = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -229,6 +234,7 @@ convertSpecialElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     convertSpecial = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -259,6 +265,7 @@ bracketElements.forEach((bracketEl) => {
     otherElements.forEach((otherEl) => {
       otherEl.setAttribute("aria-current", "false");
     });
+    editor.dispatch();
   });
 });
 
@@ -288,6 +295,7 @@ sortElements.forEach((sortEl) => {
     otherElements.forEach((otherEl) => {
       otherEl.setAttribute("aria-current", "false");
     });
+    editor.dispatch();
   });
 });
 
@@ -301,6 +309,7 @@ trimElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     trim = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -316,6 +325,7 @@ whitespaceElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     removeWhitespace = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -329,6 +339,7 @@ duplicateElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     removeDuplicates = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -344,6 +355,7 @@ diacriticElement?.addEventListener("input", (event) => {
   if (event.target != null) {
     const target = event.target as HTMLInputElement;
     removeDiacritics = target.checked;
+    editor.dispatch();
   }
 });
 
@@ -361,6 +373,7 @@ transformElements.forEach((element) => {
     const target = event.target as HTMLInputElement;
     if (target.checked) {
       transform = target.value;
+      editor.dispatch();
     }
   });
 });
@@ -502,7 +515,7 @@ function magic(text: string) {
   return `${brackets.left}${result}${brackets.right}`;
 }
 
-new EditorView({
+const editor = new EditorView({
   extensions: [
     ...baseExtensions,
     EditorView.updateListener.of((update) => {
