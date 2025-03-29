@@ -36,7 +36,7 @@ import {
 } from "@codemirror/autocomplete";
 import { lintKeymap } from "@codemirror/lint";
 
-const darkTheme = EditorView.theme(
+const theme = EditorView.theme(
   {
     // Reset
     "&.cm-focused": {
@@ -48,6 +48,7 @@ const darkTheme = EditorView.theme(
       backgroundColor: "var(--pico-background-color)",
       transition:
         "background-color var(--pico-transition),color var(--pico-transition)",
+      minHeight: "30vh",
       maxHeight: "60vh",
     },
     ".cm-scroller": { overflow: "auto" },
@@ -89,7 +90,7 @@ const darkTheme = EditorView.theme(
 );
 
 const baseExtensions = [
-  darkTheme,
+  theme,
   lineNumbers({
     formatNumber: (lineNo, _) => lineNo.toString().padStart(2, "\u00A0"),
   }),

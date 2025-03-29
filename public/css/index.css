@@ -34,6 +34,8 @@
 
   width: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: row;
 
   font-size: 1rem;
   line-height: var(--pico-line-height);
@@ -48,8 +50,9 @@
   --pico-background-color: var(--pico-form-element-active-background-color);
 }
 
-#input .cm-editor .cm-scroller { 
-  font-family: var(--pico-font-family-monospace);
+#input .cm-editor {
+  width: 0;
+  flex-grow: 1;
 }
 
 #input .cm-editor .cm-content { 

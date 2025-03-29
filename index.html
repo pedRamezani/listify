@@ -70,32 +70,58 @@
           purposes.
         </p>
       </hgroup>
+      <!-- Input & Output -->
+      <div class="grid mb">
+        <div>
+          <fieldset>
+            <div class="label">Input</div>
+            <div id="input"></div>
+          </fieldset>
+          <small>
+            Press <kbd>Escape</kbd>, then <kbd>Tab</kbd> to move out of this
+            field.
+          </small>
+        </div>
+        <fieldset class="flex-col">
+          <label for="output">Output</label>
+          <textarea
+            id="output"
+            name="output"
+            placeholder="Output will appear here"
+            aria-label="Output area"
+            readonly
+          ></textarea>
+          <button id="copy">Copy to Clipboard</button>
+        </fieldset>
+      </div>
+      <h2>Settings</h2>
       <!-- Seperators -->
       <fieldset>
         <label for="input-seperator">Input Seperator</label>
         <input
           type="text"
           name="input-seperator"
-          placeholder="Defaults to newlines"
+          placeholder="Enter seperator here"
           aria-label="Seperator"
         />
         <small
-          >The input will be parsed as a
-          <abbr title="Regular Expression" data-tooltip="Regular Expression"
-            >Regex</abbr
+          >Defaults to <code>\n</code><br />The input will be parsed as a
+          <a href="https://en.wikipedia.org/wiki/Regular_expression"
+            >regular expression</a
           >.
         </small>
         <label for="output-seperator">Output Seperator</label>
         <input
           type="text"
           name="output-seperator"
-          placeholder="Defaults to comma and space"
+          placeholder="Enter seperator here"
           aria-label="Seperator"
         />
         <small
-          >The input will be parsed as a regular string.<br />There is an
-          exception for <code>\n</code> and <code>\t</code>, which will be
-          parsed as whitespace and tabs.</small
+          >Defaults to <code>, </code><br />The input will be parsed as a
+          regular string.<br />There is an exception for <code>\n</code> and
+          <code>\t</code>, which will be parsed as whitespace and tabs
+          respectivly.</small
         >
       </fieldset>
       <!-- Single Elements -->
@@ -107,17 +133,17 @@
           <button data-quote="">No quotes</button>
         </div>
         <label>
-          <input name="quote-numbers" type="checkbox" role="switch" checked />
-          Quote numbers?
+          <input name="quote-numbers" type="checkbox" checked />
+          Quote numbers in the output
         </label>
         <label>
-          <input name="convert-special" type="checkbox" role="switch" checked />
-          Convert whitespace and tabs to special characters?
+          <input name="convert-special" type="checkbox" checked />
+          Convert whitespace and tabs to <code>\n</code> and <code>\t</code>
         </label>
       </fieldset>
       <!-- All Elements -->
       <fieldset>
-        <div class="label">Surround all elements by...</div>
+        <div class="label">Surround the output by...</div>
         <div role="group">
           <button data-bracket="()">(&nbsp;)</button>
           <button data-bracket="{}">{&nbsp;}</button>
@@ -214,30 +240,6 @@
           </li>
         </ul>
       </details>
-      <!-- Input & Output -->
-      <div class="grid mb">
-        <div>
-          <fieldset>
-            <div class="label">Input</div>
-            <div id="input"></div>
-          </fieldset>
-          <small>
-            Press <kbd>Escape</kbd>, then <kbd>Tab</kbd> to move out of this
-            field.
-          </small>
-        </div>
-        <fieldset class="flex-col">
-          <label for="output">Output</label>
-          <textarea
-            id="output"
-            name="output"
-            placeholder="Output will appear here"
-            aria-label="Output area"
-            readonly
-          ></textarea>
-          <button id="copy">Copy to Clipboard</button>
-        </fieldset>
-      </div>
     </main>
     <footer class="container">
       <p>
